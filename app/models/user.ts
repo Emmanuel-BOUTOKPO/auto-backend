@@ -6,7 +6,6 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import Product from './product.js'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
-import Order from './order.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -36,9 +35,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @hasMany(() => Product)
   declare products: HasMany<typeof Product>
-
-  @hasMany(() => Order)
-  declare orders: HasMany<typeof Order>
 
 
   @column.dateTime({ autoCreate: true })
